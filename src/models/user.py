@@ -35,13 +35,12 @@ class User(object):
     @classmethod
     def register(cls, email, password):
         user = cls.get_by_email(email)
-        if user is not None:
+        if user is None:
             new_user = cls(email, password)
             new_user.save_to_mongo()
             session['email'] = email
             return True
         else:
-
             return False
 
     @staticmethod
